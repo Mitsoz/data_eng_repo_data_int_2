@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS products_f;
+CREATE TEMP TABLE products_f AS
+SELECT products.ProductID, products.ProductName, order_details.Quantity, 
+order_details.UnitPrice, products.UnitPrice, products.QuantityPerUnit,
+products.CategoryID, categories.CategoryName, categories.Description
+FROM orders
+INNER JOIN(order_details INNER JOIN(products 
+INNER JOIN categories ON categories.CategoryID=products.CategoryID)
+ON products.ProductID=order_details.ProductID)
+ON orders.OrderID=order_details.OrderID; 
+
+select * from products_f;

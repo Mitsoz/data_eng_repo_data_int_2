@@ -1,0 +1,4 @@
+SELECT p.ProductID,p.ProductName,od.UnitPrice*od.Quantity*od.Discount as Sellings_Total
+FROM Products p 
+Inner Join "Order Details" od ON p.ProductID = od.ProductID
+Order By Sellings_Total DESC;

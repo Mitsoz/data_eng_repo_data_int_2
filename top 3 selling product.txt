@@ -1,0 +1,7 @@
+CREATE temp table topsel AS
+SELECT ProductID, sum(Quantity) as amount from "Order Details" od group by ProductID ORDER BY sum(Quantity);
+
+SELECT p.ProductName,t.amount from Products p 
+JOIN topsel t on p.ProductID =t.ProductID 
+order BY t.amount desc 
+LIMIT 3

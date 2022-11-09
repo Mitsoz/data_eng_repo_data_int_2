@@ -8,4 +8,6 @@ INNER JOIN(products INNER JOIN categories ON categories.CategoryID=products.Cate
 ON products.ProductID=order_details.ProductID)
 ON orders.OrderID=order_details.OrderID; 
 
-select * from products_f;
+select CEILING(SUM(quantity*unitprice)) as Total_Sales,
+Product_ID, ProductName, CategoryName, CategoryID, 
+Description from products_f group by product_id ORDER BY Total_Sales DESC LIMIT 3;

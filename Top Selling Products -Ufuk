@@ -1,4 +1,4 @@
-SELECT p.ProductID,p.ProductName,od.UnitPrice*od.Quantity*od.Discount as Sellings_Total
+SELECT p.ProductID,p.ProductName,SUM(od.UnitPrice*od.Quantity*(1-od.Discount))as Sellings_Total
 FROM Products p 
 Inner Join "Order Details" od ON p.ProductID = od.ProductID
 Group By p.ProductID

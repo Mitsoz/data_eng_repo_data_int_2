@@ -1,0 +1,11 @@
+SELECT		
+		r.RegionDescription as "Territory Region" ,
+		t.TerritoryDescription as "Territory",
+		Count(et.EmployeeID) as "Number of Employees"
+from Regions r
+JOIN Territories t ON r.RegionID=t.RegionID
+
+JOIN EmployeeTerritories et ON t.TerritoryID=et.TerritoryID
+
+GROUP BY t.TerritoryDescription,r.RegionDescription
+

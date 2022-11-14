@@ -1,0 +1,7 @@
+SELECT count(o.OrderID) as Total_Sale_Numbers,CEIL(SUM(od.UnitPrice*od.Quantity)) as Sales_Amount_Without_Discount,CEIL(SUM(od.UnitPrice*od.Quantity*(1-od.Discount))) as Sales_Amount_With_Discount , e.FirstName,e.LastName,e.EmployeeID 
+FROM Orders o 
+join Employees e on o.EmployeeID =e.EmployeeID
+join "Order Details" od on o.OrderID =od.OrderID
+GROUP BY e.EmployeeID 
+Order By  Sales_Amount_With_Discount DESC
+LIMIT 3;
